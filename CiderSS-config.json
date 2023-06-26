@@ -1,0 +1,4 @@
+{
+  "main": "./build/CiderSS.js",
+  "output": "./build/CiderSS-prep.blob"
+}
