@@ -5,10 +5,20 @@
     "node-hide-console-window": "^2.1.1",
     "os": "^0.1.2",
     "path": "^0.12.7",
+    "pkg": "^5.8.1",
     "prompts": "^2.4.2",
     "webpack": "^5.88.0"
   },
   "devDependencies": {
     "webpack-cli": "^5.1.4"
-  }
+  },
+  "name": "cidersteelseries",
+  "description": "Shows now playing info from Cider on a Steelseries OLED display",
+  "version": "1.0.0",
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
 }
