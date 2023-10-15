@@ -1,0 +1,44 @@
+{
+  "product": "Cider Steelseries",
+  "company": "Samuel Valencia",
+  "license": "LICENSE",
+  "upgrade-code": "1662799c-3e64-46cc-a37a-6d198f173ea4",
+  "files": {
+    "guid": "e86534f5-cb01-4da8-b4bf-6d7f5949bb11",
+    "items": [
+      "CiderSteelseries.exe"
+    ]
+  },
+  "env": {
+    "guid": "d1439568-23a6-4596-a7b0-8edf04d96a44",
+    "vars": [
+      {
+        "name": "PATH",
+        "value": "[INSTALLDIR]",
+        "permanent": "no",
+        "system": "no",
+        "action": "set",
+        "part": "last"
+      }
+    ]
+  },
+  "shortcuts": {
+    "guid": "93bf6497-cfd7-43a9-b59f-89a1ad831f31",
+    "items": [
+      {
+        "name": "Cider Steelseries",
+        "description": "Cider Steelseries",
+        "target": "[INSTALLDIR]CiderSteelseries.exe",
+        "wdir": "INSTALLDIR",
+        "arguments": "",
+        "icon": ""
+      }
+    ]
+  },
+  "choco": {
+    "description": "Shows now playing info from Cider on a Steelseries OLED display",
+    "project-url": "https://github.com/svalencia014/CiderSteelseries",
+    "tags": "cider,steelseries,nowplaying",
+    "license-url": "https://github.com/svalencia014/CiderSteelseries/blob/master/LICENSE"
+  }
+}
