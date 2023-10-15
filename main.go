@@ -6,7 +6,9 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"net/url"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -103,7 +105,13 @@ type Props struct {
 
 func main() {
 	//Setup "Game"
-	url := loadProps()
+	steelseriesUrl := loadProps()
+	steelseriesUrl = strings.TrimSpace(steelseriesUrl)
+	parsedUrl, err := url.Parse(steelseriesUrl);
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(parsedUrl);
 	//Setup initial event
 	event := Event {
 		game_event: GameEvent {
@@ -128,16 +136,23 @@ func main() {
 	for {
 		nowPlaying := comRpc("currentPlayingSong")
 		event = updateEvent(event, nowPlaying)
-		buf := new(bytes.Buffer)
-		json.NewEncoder(buf).Encode(event)
-		req, _ := http.NewRequest("POST", url, buf);
-		client := &http.Client{}
-		res, e := client.Do(req)
-		if e != nil {
-			panic(e)
+		json, err := json.Marshal(event.game_event)
+		if err != nil {
+			panic(err)
 		}
-		res.Body.Close()
-		fmt.Println("Response Status:", res.Status)
+		req, err := http.NewRequest("POST", parsedUrl.String(), bytes.NewBuffer([]byte(json)))
+		if err != nil {
+			panic(err)
+		}
+		req.Header.Set("Content-Type", "application/json")
+
+		client := &http.Client{}
+		resp, err := client.Do(req)
+		if err != nil {
+			panic(err)
+		}
+		defer resp.Body.Close()
+		time.Sleep(time.Duration(time.Duration(1).Seconds()));
 	}
 }
 
@@ -162,7 +177,7 @@ func loadProps() string {
 	}
 	props := Props{};
 	json.Unmarshal([]byte(data), &props)
-	return props.Address + "/game_event";
+	return "http://" + props.Address + "/game_event";
 }
 
 func comRpc( request string) CiderResponse {
