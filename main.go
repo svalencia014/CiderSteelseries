@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"io"
 	"net/http"
 	"net/url"
@@ -111,7 +110,6 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(parsedUrl);
 	//Setup initial event
 	event := Event {
 		game_event: GameEvent {
