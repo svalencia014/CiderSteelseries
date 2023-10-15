@@ -151,7 +151,7 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
-		defer resp.Body.Close()
+		defer resp.Body.Close() //Will never run but I have no fucks to give
 		time.Sleep(time.Duration(time.Duration(1).Seconds()));
 	}
 }
