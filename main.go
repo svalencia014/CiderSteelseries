@@ -9,6 +9,9 @@ import (
 	"os"
 	"strings"
 	"time"
+
+	"github.com/getlantern/systray"
+	"github.com/svalencia014/cidersteelseries/icon"
 )
 
 type Event struct {
@@ -103,6 +106,18 @@ type Props struct {
 }
 
 func main() {
+	//Setup App
+	systray.Run(onReady, onExit)
+	
+}
+
+func onExit() {
+
+}
+
+func onReady() {
+	//setup App
+	systray.setIcon(icon.Data)
 	//Setup "Game"
 	steelseriesUrl := loadProps()
 	steelseriesUrl = strings.TrimSpace(steelseriesUrl)
